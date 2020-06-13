@@ -8,7 +8,7 @@ using namespace std;
 
 bool playAgain = true;
 const int window_cell = 188;
-const string imageLink[] = {"ava.jpg", "fox.jpg"};
+const string imageLink[] = {"ava.jpg", "ava1.jpg", "ava2.jpg", "ava3.jpg"};
 const string wintext = "win phrase.png";
 
 struct Graphic
@@ -99,7 +99,8 @@ int main()
                         }
                         else if (Win(B) and main_event.key.keysym.sym == SDLK_RETURN)
                         {
-                            g.texture = createTexture(g.renderer, imageLink[rand() % 2].c_str());
+                            g.texture = createTexture(g.renderer,
+                                                      imageLink[rand() % 4].c_str());
                             if (g.texture == NULL)
                             {
                                 string m = SDL_GetError();
@@ -167,7 +168,7 @@ bool KhoitaoGraphic(Graphic &g)
         return false;
     }
 
-    g.texture = createTexture(g.renderer, imageLink[rand() % 2].c_str());
+    g.texture = createTexture(g.renderer, imageLink[rand() % 4].c_str());
     if (g.texture == NULL)
     {
         string m = SDL_GetError();
@@ -251,7 +252,7 @@ bool check(Board &B)
 
 void drawYouWin(Graphic &g)
 {
-    SDL_Rect src = {0,0, 626, 626};
+    SDL_Rect src = {0, 0, 626, 626};
     SDL_Rect des = {100, 100, 188 * 2, 188 * 2};
     SDL_RenderCopy(g.renderer ,g.win, &src, &des);
 }
